@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="任务乐园">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <title>宝贝任务乐园</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ========== 首页 ========== -->
+  <div id="page-home" class="page active">
+    <div class="home-header">
+      <div class="points-display">
+        <span class="star-icon">&#9733;</span>
+        <span id="home-points">0</span> 积分
+      </div>
+    </div>
+    <div class="character-stage" id="home-character-stage">
+      <!-- 角色由 JS 渲染 -->
+    </div>
+    <div class="character-name" id="home-character-name"></div>
+    <div class="character-switch">
+      <button class="btn btn-small btn-switch" onclick="app.switchCharacter()">切换角色</button>
+    </div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="app.goToPage('task')">
+        <span class="nav-icon">&#9998;</span>
+        <span>任务</span>
+      </button>
+      <button class="nav-btn" onclick="app.goToPage('shop')">
+        <span class="nav-icon">&#127873;</span>
+        <span>商店</span>
+      </button>
+      <button class="nav-btn" onclick="app.goToPage('dress')">
+        <span class="nav-icon">&#128090;</span>
+        <span>换装</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ========== 任务页 ========== -->
+  <div id="page-task" class="page">
+    <div class="page-header">
+      <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
+      <h2>任务清单</h2>
+      <div class="points-display points-small">
+        <span class="star-icon">&#9733;</span>
+        <span id="task-points">0</span>
+      </div>
+    </div>
+    <div class="task-list" id="task-list">
+      <!-- 任务由 JS 渲染 -->
+    </div>
+    <div class="today-history" id="today-history">
+      <h3>今日完成</h3>
+      <div id="today-list"></div>
+    </div>
+  </div>
+
+  <!-- ========== 商店页 ========== -->
+  <div id="page-shop" class="page">
+    <div class="page-header">
+      <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
+      <h2>道具商店</h2>
+      <div class="points-display points-small">
+        <span class="star-icon">&#9733;</span>
+        <span id="shop-points">0</span>
+      </div>
+    </div>
+    <div class="shop-tabs" id="shop-tabs">
+      <!-- 分类标签由 JS 渲染 -->
+    </div>
+    <div class="shop-grid" id="shop-grid">
+      <!-- 道具由 JS 渲染 -->
+    </div>
+  </div>
+
+  <!-- ========== 换装页 ========== -->
+  <div id="page-dress" class="page">
+    <div class="page-header">
+      <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
+      <h2>装扮角色</h2>
+      <div class="points-display points-small">
+        <span class="star-icon">&#9733;</span>
+        <span id="dress-points">0</span>
+      </div>
+    </div>
+    <div class="character-stage dress-stage" id="dress-character-stage">
+      <!-- 角色由 JS 渲染 -->
+    </div>
+    <div class="dress-tabs" id="dress-tabs"></div>
+    <div class="dress-items" id="dress-items">
+      <!-- 已拥有道具由 JS 渲染 -->
+    </div>
+  </div>
+
+  <!-- ========== 密码弹窗 ========== -->
+  <div id="pin-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="pin-title">请输入家长密码</h3>
+      <div class="pin-display" id="pin-display">
+        <span class="pin-dot"></span>
+        <span class="pin-dot"></span>
+        <span class="pin-dot"></span>
+        <span class="pin-dot"></span>
+      </div>
+      <div class="pin-pad">
+        <button class="pin-btn" onclick="app.pinInput(1)">1</button>
+        <button class="pin-btn" onclick="app.pinInput(2)">2</button>
+        <button class="pin-btn" onclick="app.pinInput(3)">3</button>
+        <button class="pin-btn" onclick="app.pinInput(4)">4</button>
+        <button class="pin-btn" onclick="app.pinInput(5)">5</button>
+        <button class="pin-btn" onclick="app.pinInput(6)">6</button>
+        <button class="pin-btn" onclick="app.pinInput(7)">7</button>
+        <button class="pin-btn" onclick="app.pinInput(8)">8</button>
+        <button class="pin-btn" onclick="app.pinInput(9)">9</button>
+        <button class="pin-btn pin-btn-empty"></button>
+        <button class="pin-btn" onclick="app.pinInput(0)">0</button>
+        <button class="pin-btn pin-btn-del" onclick="app.pinDelete()">&#9003;</button>
+      </div>
+      <button class="btn btn-cancel" onclick="app.closePin()">取消</button>
+    </div>
+  </div>
+
+  <!-- ========== 购买确认弹窗 ========== -->
+  <div id="buy-modal" class="modal">
+    <div class="modal-content modal-buy">
+      <div class="buy-preview" id="buy-preview"></div>
+      <p class="buy-name" id="buy-name"></p>
+      <p class="buy-price"><span class="star-icon">&#9733;</span> <span id="buy-price-num"></span> 积分</p>
+      <div class="buy-actions">
+        <button class="btn btn-cancel" onclick="app.closeBuy()">不要了</button>
+        <button class="btn btn-confirm" onclick="app.confirmBuy()">买！</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 庆祝动画层 ========== -->
+  <div id="celebration" class="celebration"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

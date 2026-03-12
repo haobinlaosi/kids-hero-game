@@ -1,0 +1,18 @@
+{
+  "name": "宝贝任务乐园",
+  "short_name": "任务乐园",
+  "description": "超级飞侠 & 奥特曼 - 完成任务收集装扮",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFE066",
+  "theme_color": "#FF6B6B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
