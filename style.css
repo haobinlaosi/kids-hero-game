@@ -147,6 +147,9 @@ html, body {
   position: relative;
   width: 160px;
   height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: characterIdle 2s ease-in-out infinite;
 }
 
@@ -155,213 +158,17 @@ html, body {
   height: 250px;
 }
 
+.char-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+
 @keyframes characterIdle {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-
-/* 乐迪 - 超级飞侠 */
-.char-leidi .char-body {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #FF3B3B, #CC0000);
-  border-radius: 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2);
-}
-
-.char-leidi .char-head {
-  width: 70px;
-  height: 65px;
-  background: linear-gradient(135deg, #FF5555, #DD2222);
-  border-radius: 50% 50% 40% 40%;
-  position: absolute;
-  left: 50%;
-  top: 15%;
-  transform: translate(-50%, -50%);
-  box-shadow: inset -3px -3px 10px rgba(0,0,0,0.15);
-}
-
-.char-leidi .char-eye {
-  width: 16px;
-  height: 18px;
-  background: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 35%;
-  box-shadow: inset 2px 2px 0 3px #222;
-}
-
-.char-leidi .char-eye.left { left: 22%; }
-.char-leidi .char-eye.right { right: 22%; }
-
-.char-leidi .char-eye::after {
-  content: '';
-  width: 8px;
-  height: 9px;
-  background: #222;
-  border-radius: 50%;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-}
-
-.char-leidi .char-mouth {
-  width: 20px;
-  height: 10px;
-  border-bottom: 3px solid #222;
-  border-radius: 0 0 50% 50%;
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.char-leidi .char-wing {
-  width: 35px;
-  height: 20px;
-  background: linear-gradient(135deg, #4488FF, #2266DD);
-  position: absolute;
-  top: 45%;
-  border-radius: 0 50% 50% 0;
-}
-
-.char-leidi .char-wing.left {
-  left: 2px;
-  border-radius: 50% 0 0 50%;
-  transform: rotate(-5deg);
-}
-
-.char-leidi .char-wing.right {
-  right: 2px;
-  transform: rotate(5deg);
-}
-
-.char-leidi .char-foot {
-  width: 28px;
-  height: 15px;
-  background: #333;
-  border-radius: 0 0 10px 10px;
-  position: absolute;
-  bottom: 10%;
-}
-
-.char-leidi .char-foot.left { left: 28%; }
-.char-leidi .char-foot.right { right: 28%; }
-
-/* 迪迦奥特曼 */
-.char-diga .char-body {
-  width: 80px;
-  height: 110px;
-  background: linear-gradient(180deg, #C0C0C0, #888);
-  border-radius: 30px 30px 15px 15px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -45%);
-  overflow: hidden;
-}
-
-.char-diga .char-body::before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  left: 50%;
-  top: 10px;
-  bottom: 10px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #FF3333, #CC0000);
-  border-radius: 10px;
-}
-
-.char-diga .char-body::after {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  left: 50%;
-  top: 15px;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, #00BFFF 30%, #0088CC 60%, transparent 70%);
-  border-radius: 50%;
-}
-
-.char-diga .char-head {
-  width: 55px;
-  height: 60px;
-  background: linear-gradient(180deg, #D0D0D0, #A0A0A0);
-  border-radius: 50% 50% 40% 40%;
-  position: absolute;
-  left: 50%;
-  top: 12%;
-  transform: translate(-50%, -50%);
-}
-
-.char-diga .char-crest {
-  width: 12px;
-  height: 30px;
-  background: linear-gradient(180deg, #FFD700, #FF8C00);
-  position: absolute;
-  left: 50%;
-  top: -5px;
-  transform: translateX(-50%);
-  border-radius: 6px 6px 3px 3px;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-}
-
-.char-diga .char-eye {
-  width: 22px;
-  height: 10px;
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  border-radius: 50%;
-  position: absolute;
-  top: 40%;
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
-}
-
-.char-diga .char-eye.left {
-  left: 8px;
-  transform: rotate(-15deg);
-}
-
-.char-diga .char-eye.right {
-  right: 8px;
-  transform: rotate(15deg);
-}
-
-.char-diga .char-arm {
-  width: 20px;
-  height: 60px;
-  background: linear-gradient(180deg, #C0C0C0, #999);
-  position: absolute;
-  top: 42%;
-  border-radius: 10px;
-}
-
-.char-diga .char-arm.left {
-  left: 8px;
-  transform: rotate(10deg);
-}
-
-.char-diga .char-arm.right {
-  right: 8px;
-  transform: rotate(-10deg);
-}
-
-.char-diga .char-foot {
-  width: 25px;
-  height: 12px;
-  background: #777;
-  border-radius: 0 0 8px 8px;
-  position: absolute;
-  bottom: 8%;
-}
-
-.char-diga .char-foot.left { left: 30%; }
-.char-diga .char-foot.right { right: 30%; }
 
 /* ============ 装扮道具在角色上的显示 ============ */
 .equip-hat {

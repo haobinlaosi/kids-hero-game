@@ -4,38 +4,14 @@ const CHARACTERS = {
   leidi: {
     name: '乐迪',
     desc: '超级飞侠',
-    html: `
-      <div class="character char-leidi">
-        <div class="char-head">
-          <div class="char-eye left"></div>
-          <div class="char-eye right"></div>
-          <div class="char-mouth"></div>
-        </div>
-        <div class="char-body"></div>
-        <div class="char-wing left"></div>
-        <div class="char-wing right"></div>
-        <div class="char-foot left"></div>
-        <div class="char-foot right"></div>
-      </div>
-    `
+    img: 'icons/leidi.png',
+    html: `<div class="character"><img class="char-img" src="icons/leidi.png" alt="乐迪"></div>`
   },
   diga: {
     name: '迪迦',
     desc: '奥特曼',
-    html: `
-      <div class="character char-diga">
-        <div class="char-head">
-          <div class="char-crest"></div>
-          <div class="char-eye left"></div>
-          <div class="char-eye right"></div>
-        </div>
-        <div class="char-body"></div>
-        <div class="char-arm left"></div>
-        <div class="char-arm right"></div>
-        <div class="char-foot left"></div>
-        <div class="char-foot right"></div>
-      </div>
-    `
+    img: 'icons/dijia.png',
+    html: `<div class="character"><img class="char-img" src="icons/dijia.png" alt="迪迦"></div>`
   }
 };
 
