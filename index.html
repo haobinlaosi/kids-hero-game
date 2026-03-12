@@ -9,17 +9,14 @@
   <link rel="apple-touch-icon" href="icons/icon.svg">
   <link rel="manifest" href="manifest.json">
   <title>宝贝任务乐园</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
   <!-- ========== 首页 ========== -->
   <div id="page-home" class="page active">
     <div class="home-header">
-      <div class="points-display">
-        <span class="star-icon">&#9733;</span>
-        <span id="home-points">0</span> 积分
-      </div>
+      <div class="points-display"><span class="star-icon">&#9733;</span> <span class="pts-val">0</span> 积分</div>
     </div>
     <div class="character-stage" id="home-character-stage"></div>
     <div class="character-name" id="home-character-name"></div>
@@ -27,18 +24,9 @@
       <button class="btn btn-small btn-switch" onclick="app.switchCharacter()">切换角色</button>
     </div>
     <nav class="bottom-nav">
-      <button class="nav-btn" onclick="app.goToPage('task')">
-        <span class="nav-icon">&#9998;</span>
-        <span>任务</span>
-      </button>
-      <button class="nav-btn" onclick="app.goToPage('house')">
-        <span class="nav-icon">&#127968;</span>
-        <span>小屋</span>
-      </button>
-      <button class="nav-btn" onclick="app.goToPage('battle')">
-        <span class="nav-icon">&#9876;</span>
-        <span>打怪兽</span>
-      </button>
+      <button class="nav-btn" onclick="app.goToPage('task')"><span class="nav-icon">&#9998;</span><span>任务</span></button>
+      <button class="nav-btn" onclick="app.goToPage('house')"><span class="nav-icon">&#127968;</span><span>小屋</span></button>
+      <button class="nav-btn" onclick="app.goToPage('battle')"><span class="nav-icon">&#9876;</span><span>打怪兽</span></button>
     </nav>
   </div>
 
@@ -47,35 +35,41 @@
     <div class="page-header">
       <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
       <h2>任务清单</h2>
-      <div class="points-display points-small">
-        <span class="star-icon">&#9733;</span>
-        <span id="task-points">0</span>
-      </div>
+      <div class="points-display points-small"><span class="star-icon">&#9733;</span> <span class="pts-val">0</span></div>
     </div>
     <div class="task-list" id="task-list"></div>
-    <div class="today-history">
-      <h3>今日完成</h3>
-      <div id="today-list"></div>
-    </div>
+    <div class="today-history"><h3>今日完成</h3><div id="today-list"></div></div>
   </div>
 
   <!-- ========== 小屋页 ========== -->
   <div id="page-house" class="page">
     <div class="page-header">
       <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
-      <h2 id="house-title">乐迪的小屋</h2>
-      <div class="points-display points-small">
-        <span class="star-icon">&#9733;</span>
-        <span id="house-points">0</span>
+      <h2 id="house-title">小屋</h2>
+      <div class="points-display points-small"><span class="star-icon">&#9733;</span> <span class="pts-val">0</span></div>
+    </div>
+    <!-- 房间 -->
+    <div class="room">
+      <!-- 墙壁 -->
+      <div class="room-wall" id="room-wall">
+        <div class="room-wall-decor" id="room-wall-decor"></div>
+        <div class="room-trophies" id="room-trophies"></div>
+        <div class="room-window">&#127749;</div>
+      </div>
+      <!-- 地板 -->
+      <div class="room-floor" id="room-floor">
+        <div class="room-special" id="room-special"></div>
+        <div class="room-center">
+          <div class="room-pet-slot" id="room-pet-left"></div>
+          <div class="room-character" id="room-character"></div>
+          <div class="room-pet-slot" id="room-pet-right"></div>
+        </div>
+        <div class="room-furniture" id="room-furniture"></div>
       </div>
     </div>
-    <div class="house-room" id="house-room">
-      <div class="house-character" id="house-character"></div>
-      <div class="house-items" id="house-items"></div>
-    </div>
     <div class="house-buttons">
-      <button class="btn btn-small btn-switch" onclick="app.switchHouseCharacter()">切换角色小屋</button>
-      <button class="btn btn-small btn-confirm" onclick="app.goToPage('shop')">&#127873; 去商店买装饰</button>
+      <button class="btn btn-small btn-switch" onclick="app.switchHouseCharacter()">切换小屋</button>
+      <button class="btn btn-small btn-confirm" onclick="app.goToPage('shop')">&#127873; 商店</button>
     </div>
   </div>
 
@@ -84,10 +78,7 @@
     <div class="page-header">
       <button class="btn-back" onclick="app.goToPage('house')">&#8592;</button>
       <h2>装饰商店</h2>
-      <div class="points-display points-small">
-        <span class="star-icon">&#9733;</span>
-        <span id="shop-points">0</span>
-      </div>
+      <div class="points-display points-small"><span class="star-icon">&#9733;</span> <span class="pts-val">0</span></div>
     </div>
     <div class="shop-tabs" id="shop-tabs"></div>
     <div class="shop-grid" id="shop-grid"></div>
@@ -98,46 +89,29 @@
     <div class="page-header">
       <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
       <h2>打怪兽</h2>
-      <div class="points-display points-small">
-        <span class="star-icon">&#9733;</span>
-        <span id="battle-points">0</span>
-      </div>
+      <div class="points-display points-small"><span class="star-icon">&#9733;</span> <span class="pts-val">0</span></div>
     </div>
     <div id="battle-area">
-      <!-- 怪兽区域 -->
       <div class="battle-monster" id="battle-monster">
         <div class="monster-name" id="monster-name"></div>
         <div class="monster-icon" id="monster-icon"></div>
-        <div class="hp-bar-wrap">
-          <div class="hp-bar" id="monster-hp-bar"></div>
-        </div>
+        <div class="hp-bar-wrap"><div class="hp-bar" id="monster-hp-bar"></div></div>
         <div class="hp-text" id="monster-hp-text"></div>
       </div>
-      <!-- VS -->
       <div class="battle-vs">VS</div>
-      <!-- 英雄区域 -->
       <div class="battle-hero" id="battle-hero"></div>
-      <!-- 攻击按钮 -->
       <div class="battle-actions" id="battle-actions"></div>
-      <!-- 战斗日志 -->
+      <div id="pet-actions"></div>
       <div class="battle-log" id="battle-log"></div>
-    </div>
-    <!-- 战利品墙 -->
-    <div class="trophy-section">
-      <h3 class="trophy-title">&#127942; 战利品墙</h3>
-      <div class="trophy-wall" id="trophy-wall"></div>
     </div>
   </div>
 
-  <!-- ========== 密码弹窗 ========== -->
+  <!-- ========== 弹窗 ========== -->
   <div id="pin-modal" class="modal">
     <div class="modal-content">
       <h3 id="pin-title">请输入家长密码</h3>
       <div class="pin-display" id="pin-display">
-        <span class="pin-dot"></span>
-        <span class="pin-dot"></span>
-        <span class="pin-dot"></span>
-        <span class="pin-dot"></span>
+        <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
       </div>
       <div class="pin-pad">
         <button class="pin-btn" onclick="app.pinInput(1)">1</button>
@@ -157,7 +131,6 @@
     </div>
   </div>
 
-  <!-- ========== 购买确认弹窗 ========== -->
   <div id="buy-modal" class="modal">
     <div class="modal-content modal-buy">
       <div class="buy-preview" id="buy-preview"></div>
@@ -170,7 +143,6 @@
     </div>
   </div>
 
-  <!-- ========== 胜利弹窗 ========== -->
   <div id="victory-modal" class="modal">
     <div class="modal-content">
       <div style="font-size:60px;margin-bottom:10px">&#127881;</div>
@@ -180,9 +152,7 @@
     </div>
   </div>
 
-  <!-- ========== 庆祝动画层 ========== -->
   <div id="celebration" class="celebration"></div>
-
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
