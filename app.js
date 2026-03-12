@@ -9,11 +9,15 @@ const TASKS = [
   { id: 'brush', name: '刷牙', icon: '🪥', points: 5 },
   { id: 'tidy', name: '收拾玩具', icon: '🧸', points: 5 },
   { id: 'eat', name: '自己吃饭', icon: '🍚', points: 10 },
+  { id: 'veggie', name: '吃青菜', icon: '🥦', points: 5 },
   { id: 'chore', name: '帮忙做家务', icon: '🧹', points: 15 },
-  { id: 'sleep', name: '早睡早起', icon: '🌙', points: 10 },
+  { id: 'early_sleep', name: '早睡', icon: '🌙', points: 10 },
+  { id: 'early_rise', name: '早起', icon: '🌅', points: 10 },
   { id: 'study', name: '看书学习', icon: '📖', points: 10 },
+  { id: 'english', name: '学英语', icon: '🔤', points: 5 },
   { id: 'exercise', name: '运动锻炼', icon: '⚽', points: 10 },
-  { id: 'polite', name: '礼貌待人', icon: '👋', points: 5 }
+  { id: 'obey', name: '听话', icon: '👍', points: 5 },
+  { id: 'hit', name: '打人', icon: '🚫', points: -5 }
 ];
 
 const SHOP_ITEMS = {
@@ -268,12 +272,14 @@ const app = {
   renderTasks() {
     const today = new Date().toISOString().slice(0, 10);
     const todayDone = this.data.taskHistory.filter(t => t.date === today);
-    document.getElementById('task-list').innerHTML = TASKS.map(task => `
-      <div class="task-item">
+    document.getElementById('task-list').innerHTML = TASKS.map(task => {
+      const isPenalty = task.points < 0;
+      return `<div class="task-item ${isPenalty ? 'task-penalty' : ''}">
         <div class="task-icon">${task.icon}</div>
-        <div class="task-info"><div class="task-name">${task.name}</div><div class="task-reward">&#9733; +${task.points}</div></div>
-        <button class="task-done-btn" onclick="app.completeTask('${task.id}',event)">&#10003;</button>
-      </div>`).join('');
+        <div class="task-info"><div class="task-name">${task.name}</div><div class="task-reward ${isPenalty ? 'penalty' : ''}">${isPenalty ? '' : '&#9733; +'}${task.points} 积分</div></div>
+        <button class="task-done-btn ${isPenalty ? 'task-penalty-btn' : ''}" onclick="app.completeTask('${task.id}',event)">${isPenalty ? '&#10007;' : '&#10003;'}</button>
+      </div>`;
+    }).join('');
     const tl = document.getElementById('today-list');
     tl.innerHTML = todayDone.length === 0 ? '<div class="today-empty">今天还没有完成任务哦~</div>'
       : todayDone.map(t => `<div class="today-item"><span class="check">&#10003;</span><span>${t.task}</span><span style="margin-left:auto;color:#B8860B">+${t.points}</span></div>`).join('');
@@ -281,11 +287,22 @@ const app = {
   completeTask(id, e) {
     const task = TASKS.find(t => t.id === id);
     if (!task) return;
-    this.data.points += task.points;
-    this.data.taskHistory.push({ task: task.name, points: task.points, date: new Date().toISOString().slice(0, 10) });
-    this.saveData(); this.updateAllPoints();
-    this.animatePoints(task.points, e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().top);
-    this.celebrate(); this.renderTasks();
+    if (task.points < 0) {
+      // 扣分：不低于0
+      if (this.data.points <= 0) { this.showToast('积分已经是0了'); return; }
+      const actual = Math.max(task.points, -this.data.points);
+      this.data.points += actual;
+      this.data.taskHistory.push({ task: task.name, points: actual, date: new Date().toISOString().slice(0, 10) });
+      this.saveData(); this.updateAllPoints();
+      this.animatePoints(actual, e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().top, true);
+      this.renderTasks();
+    } else {
+      this.data.points += task.points;
+      this.data.taskHistory.push({ task: task.name, points: task.points, date: new Date().toISOString().slice(0, 10) });
+      this.saveData(); this.updateAllPoints();
+      this.animatePoints(task.points, e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().top);
+      this.celebrate(); this.renderTasks();
+    }
   },
 
   // ---- 小屋 ----
