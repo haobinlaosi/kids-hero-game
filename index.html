@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icons/icon.svg">
   <link rel="manifest" href="manifest.json">
   <title>宝贝任务乐园</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -73,7 +73,8 @@
       <div class="house-character" id="house-character"></div>
       <div class="house-items" id="house-items"></div>
     </div>
-    <div style="text-align:center;padding:10px 0">
+    <div class="house-buttons">
+      <button class="btn btn-small btn-switch" onclick="app.switchHouseCharacter()">切换角色小屋</button>
       <button class="btn btn-small btn-confirm" onclick="app.goToPage('shop')">&#127873; 去商店买装饰</button>
     </div>
   </div>
@@ -182,6 +183,6 @@
   <!-- ========== 庆祝动画层 ========== -->
   <div id="celebration" class="celebration"></div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

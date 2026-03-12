@@ -33,7 +33,11 @@ const SHOP_ITEMS = {
       { id: 'f_bed', name: '小床', icon: '🛏️', price: 25 },
       { id: 'f_shelf', name: '书架', icon: '📚', price: 20 },
       { id: 'f_tv', name: '电视', icon: '📺', price: 30 },
-      { id: 'f_lamp', name: '台灯', icon: '💡', price: 15 }
+      { id: 'f_lamp', name: '台灯', icon: '💡', price: 15 },
+      { id: 'f_bath', name: '浴缸', icon: '🛁', price: 30 },
+      { id: 'f_piano', name: '钢琴', icon: '🎹', price: 35 },
+      { id: 'f_computer', name: '电脑', icon: '💻', price: 25 },
+      { id: 'f_fridge', name: '冰箱', icon: '🧊', price: 20 }
     ]
   },
   wallDecor: {
@@ -44,7 +48,11 @@ const SHOP_ITEMS = {
       { id: 'w_photo', name: '照片墙', icon: '📷', price: 15 },
       { id: 'w_cert', name: '奖状', icon: '📜', price: 20 },
       { id: 'w_mirror', name: '镜子', icon: '🪞', price: 15 },
-      { id: 'w_flag', name: '小旗帜', icon: '🚩', price: 10 }
+      { id: 'w_flag', name: '小旗帜', icon: '🚩', price: 10 },
+      { id: 'w_map', name: '世界地图', icon: '🗺️', price: 20 },
+      { id: 'w_note', name: '音符墙', icon: '🎵', price: 15 },
+      { id: 'w_heart', name: '爱心墙', icon: '❤️', price: 10 },
+      { id: 'w_star', name: '星星灯', icon: '🌟', price: 20 }
     ]
   },
   floor: {
@@ -54,7 +62,10 @@ const SHOP_ITEMS = {
       { id: 'fl_rainbow', name: '彩虹', icon: '🌈', price: 40, bg: 'linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd)' },
       { id: 'fl_grass', name: '草地', icon: '🌿', price: 30, bg: 'linear-gradient(135deg, #56ab2f, #a8e063)' },
       { id: 'fl_ocean', name: '海洋', icon: '🌊', price: 40, bg: 'linear-gradient(135deg, #006994, #00b4d8)' },
-      { id: 'fl_cloud', name: '云朵天空', icon: '☁️', price: 35, bg: 'linear-gradient(135deg, #89CFF0, #B9E0FF)' }
+      { id: 'fl_cloud', name: '云朵天空', icon: '☁️', price: 35, bg: 'linear-gradient(135deg, #89CFF0, #B9E0FF)' },
+      { id: 'fl_sunset', name: '晚霞', icon: '🌅', price: 40, bg: 'linear-gradient(135deg, #f12711, #f5af19)' },
+      { id: 'fl_candy', name: '糖果屋', icon: '🍬', price: 35, bg: 'linear-gradient(135deg, #ff9ff3, #feca57, #48dbfb)' },
+      { id: 'fl_space', name: '太空', icon: '🪐', price: 50, bg: 'linear-gradient(135deg, #0a0a2e, #1e003e, #0a0a2e)' }
     ]
   },
   special: {
@@ -65,7 +76,11 @@ const SHOP_ITEMS = {
       { id: 's_lights', name: '彩灯', icon: '🎆', price: 45 },
       { id: 's_fountain', name: '喷泉', icon: '⛲', price: 60 },
       { id: 's_flower', name: '花园', icon: '🌸', price: 40 },
-      { id: 's_rocket', name: '火箭', icon: '🚀', price: 55 }
+      { id: 's_rocket', name: '火箭', icon: '🚀', price: 55 },
+      { id: 's_rainbow', name: '彩虹桥', icon: '🌈', price: 50 },
+      { id: 's_trophy', name: '奖杯', icon: '🏆', price: 45 },
+      { id: 's_castle', name: '小城堡', icon: '🏰', price: 60 },
+      { id: 's_ferris', name: '摩天轮', icon: '🎡', price: 55 }
     ]
   }
 };
@@ -127,6 +142,14 @@ const app = {
         parentPin: null
       };
       this.saveData();
+    }
+    // 数据兼容性修复
+    if (!this.data.battle) {
+      this.data.battle = { currentMonster: null, lastFreeAttackDate: null, trophies: [] };
+    }
+    if (!this.data.battle.trophies) this.data.battle.trophies = [];
+    if (!this.data.houses) {
+      this.data.houses = { leidi: { items: [], floor: null }, diga: { items: [], floor: null } };
     }
     // 确保有怪兽
     if (!this.data.battle.currentMonster) {
@@ -320,6 +343,14 @@ const app = {
   },
 
   // ---- 小屋系统 ----
+  switchHouseCharacter() {
+    const chars = Object.keys(CHARACTERS);
+    const idx = chars.indexOf(this.data.currentCharacter);
+    this.data.currentCharacter = chars[(idx + 1) % chars.length];
+    this.saveData();
+    this.renderHouse();
+  },
+
   renderHouse() {
     const charId = this.data.currentCharacter;
     const char = CHARACTERS[charId];

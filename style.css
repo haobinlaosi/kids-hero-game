@@ -341,6 +341,13 @@ html, body {
   text-align: center;
 }
 
+.house-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 0;
+}
+
 @keyframes itemPopIn {
   0% { transform: scale(0); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
