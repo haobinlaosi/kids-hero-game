@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <!-- ========== 首页 ========== -->
   <div id="page-home" class="page active">
     <div class="home-header">
@@ -20,9 +21,7 @@
         <span id="home-points">0</span> 积分
       </div>
     </div>
-    <div class="character-stage" id="home-character-stage">
-      <!-- 角色由 JS 渲染 -->
-    </div>
+    <div class="character-stage" id="home-character-stage"></div>
     <div class="character-name" id="home-character-name"></div>
     <div class="character-switch">
       <button class="btn btn-small btn-switch" onclick="app.switchCharacter()">切换角色</button>
@@ -32,13 +31,13 @@
         <span class="nav-icon">&#9998;</span>
         <span>任务</span>
       </button>
-      <button class="nav-btn" onclick="app.goToPage('shop')">
-        <span class="nav-icon">&#127873;</span>
-        <span>商店</span>
+      <button class="nav-btn" onclick="app.goToPage('house')">
+        <span class="nav-icon">&#127968;</span>
+        <span>小屋</span>
       </button>
-      <button class="nav-btn" onclick="app.goToPage('dress')">
-        <span class="nav-icon">&#128090;</span>
-        <span>换装</span>
+      <button class="nav-btn" onclick="app.goToPage('battle')">
+        <span class="nav-icon">&#9876;</span>
+        <span>打怪兽</span>
       </button>
     </nav>
   </div>
@@ -53,49 +52,79 @@
         <span id="task-points">0</span>
       </div>
     </div>
-    <div class="task-list" id="task-list">
-      <!-- 任务由 JS 渲染 -->
-    </div>
-    <div class="today-history" id="today-history">
+    <div class="task-list" id="task-list"></div>
+    <div class="today-history">
       <h3>今日完成</h3>
       <div id="today-list"></div>
+    </div>
+  </div>
+
+  <!-- ========== 小屋页 ========== -->
+  <div id="page-house" class="page">
+    <div class="page-header">
+      <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
+      <h2 id="house-title">乐迪的小屋</h2>
+      <div class="points-display points-small">
+        <span class="star-icon">&#9733;</span>
+        <span id="house-points">0</span>
+      </div>
+    </div>
+    <div class="house-room" id="house-room">
+      <div class="house-character" id="house-character"></div>
+      <div class="house-items" id="house-items"></div>
+    </div>
+    <div style="text-align:center;padding:10px 0">
+      <button class="btn btn-small btn-confirm" onclick="app.goToPage('shop')">&#127873; 去商店买装饰</button>
     </div>
   </div>
 
   <!-- ========== 商店页 ========== -->
   <div id="page-shop" class="page">
     <div class="page-header">
-      <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
-      <h2>道具商店</h2>
+      <button class="btn-back" onclick="app.goToPage('house')">&#8592;</button>
+      <h2>装饰商店</h2>
       <div class="points-display points-small">
         <span class="star-icon">&#9733;</span>
         <span id="shop-points">0</span>
       </div>
     </div>
-    <div class="shop-tabs" id="shop-tabs">
-      <!-- 分类标签由 JS 渲染 -->
-    </div>
-    <div class="shop-grid" id="shop-grid">
-      <!-- 道具由 JS 渲染 -->
-    </div>
+    <div class="shop-tabs" id="shop-tabs"></div>
+    <div class="shop-grid" id="shop-grid"></div>
   </div>
 
-  <!-- ========== 换装页 ========== -->
-  <div id="page-dress" class="page">
+  <!-- ========== 打怪兽页 ========== -->
+  <div id="page-battle" class="page">
     <div class="page-header">
       <button class="btn-back" onclick="app.goToPage('home')">&#8592;</button>
-      <h2>装扮角色</h2>
+      <h2>打怪兽</h2>
       <div class="points-display points-small">
         <span class="star-icon">&#9733;</span>
-        <span id="dress-points">0</span>
+        <span id="battle-points">0</span>
       </div>
     </div>
-    <div class="character-stage dress-stage" id="dress-character-stage">
-      <!-- 角色由 JS 渲染 -->
+    <div id="battle-area">
+      <!-- 怪兽区域 -->
+      <div class="battle-monster" id="battle-monster">
+        <div class="monster-name" id="monster-name"></div>
+        <div class="monster-icon" id="monster-icon"></div>
+        <div class="hp-bar-wrap">
+          <div class="hp-bar" id="monster-hp-bar"></div>
+        </div>
+        <div class="hp-text" id="monster-hp-text"></div>
+      </div>
+      <!-- VS -->
+      <div class="battle-vs">VS</div>
+      <!-- 英雄区域 -->
+      <div class="battle-hero" id="battle-hero"></div>
+      <!-- 攻击按钮 -->
+      <div class="battle-actions" id="battle-actions"></div>
+      <!-- 战斗日志 -->
+      <div class="battle-log" id="battle-log"></div>
     </div>
-    <div class="dress-tabs" id="dress-tabs"></div>
-    <div class="dress-items" id="dress-items">
-      <!-- 已拥有道具由 JS 渲染 -->
+    <!-- 战利品墙 -->
+    <div class="trophy-section">
+      <h3 class="trophy-title">&#127942; 战利品墙</h3>
+      <div class="trophy-wall" id="trophy-wall"></div>
     </div>
   </div>
 
@@ -137,6 +166,16 @@
         <button class="btn btn-cancel" onclick="app.closeBuy()">不要了</button>
         <button class="btn btn-confirm" onclick="app.confirmBuy()">买！</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ========== 胜利弹窗 ========== -->
+  <div id="victory-modal" class="modal">
+    <div class="modal-content">
+      <div style="font-size:60px;margin-bottom:10px">&#127881;</div>
+      <h3 style="font-size:22px;color:#FF6B6B;margin-bottom:8px">怪兽被打败啦！</h3>
+      <p id="victory-text" style="font-size:16px;color:#666;margin-bottom:20px"></p>
+      <button class="btn btn-confirm" onclick="app.closeVictory()">太棒了！</button>
     </div>
   </div>
 

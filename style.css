@@ -52,9 +52,7 @@ html, body {
   min-height: 52px;
 }
 
-.btn:active {
-  transform: scale(0.93);
-}
+.btn:active { transform: scale(0.93); }
 
 .btn-small {
   font-size: 14px;
@@ -69,10 +67,7 @@ html, body {
   box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
 
-.btn-cancel {
-  background: #E8E8E8;
-  color: #666;
-}
+.btn-cancel { background: #E8E8E8; color: #666; }
 
 .btn-switch {
   background: linear-gradient(135deg, #a18cd1, #fbc2eb);
@@ -94,19 +89,10 @@ html, body {
   box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
 }
 
-.points-small {
-  font-size: 16px;
-  padding: 5px 12px;
-}
+.points-small { font-size: 16px; padding: 5px 12px; }
+.star-icon { color: #FF8C00; font-size: 1.1em; }
 
-.star-icon {
-  color: #FF8C00;
-  font-size: 1.1em;
-}
-
-.points-display.bounce {
-  animation: pointsBounce 0.5s ease;
-}
+.points-display.bounce { animation: pointsBounce 0.5s ease; }
 
 @keyframes pointsBounce {
   0%, 100% { transform: scale(1); }
@@ -153,10 +139,7 @@ html, body {
   animation: characterIdle 2s ease-in-out infinite;
 }
 
-.character.large {
-  width: 200px;
-  height: 250px;
-}
+.character.large { width: 200px; height: 250px; }
 
 .char-img {
   width: 100%;
@@ -170,52 +153,10 @@ html, body {
   50% { transform: translateY(-8px); }
 }
 
-/* ============ 装扮道具在角色上的显示 ============ */
-.equip-hat {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40px;
-  z-index: 10;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
-}
-
-.equip-cape {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 50px;
-  z-index: -1;
-  opacity: 0.9;
-}
-
-.equip-weapon {
-  position: absolute;
-  right: -15px;
-  top: 40%;
-  font-size: 36px;
-  z-index: 10;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
-}
-
-.equip-bg {
-  position: absolute;
-  inset: -30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 120px;
-  opacity: 0.15;
-  z-index: -2;
-  pointer-events: none;
-}
-
 /* ============ 底部导航 ============ */
 .bottom-nav {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   padding: 12px 8px 20px;
   justify-content: center;
 }
@@ -229,35 +170,29 @@ html, body {
   padding: 14px 8px;
   border: none;
   border-radius: 20px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.15s;
   min-height: 70px;
 }
 
-.nav-btn:active {
-  transform: scale(0.92);
-}
+.nav-btn:active { transform: scale(0.92); }
 
 .nav-btn:nth-child(1) {
   background: linear-gradient(135deg, #74b9ff, #0984e3);
   color: #fff;
 }
-
 .nav-btn:nth-child(2) {
   background: linear-gradient(135deg, #fd79a8, #e84393);
   color: #fff;
 }
-
 .nav-btn:nth-child(3) {
-  background: linear-gradient(135deg, #55efc4, #00b894);
+  background: linear-gradient(135deg, #FF6B6B, #ee5a24);
   color: #fff;
 }
 
-.nav-icon {
-  font-size: 26px;
-}
+.nav-icon { font-size: 26px; }
 
 /* ============ 页面头部 ============ */
 .page-header {
@@ -271,10 +206,7 @@ html, body {
   z-index: 5;
 }
 
-.page-header h2 {
-  flex: 1;
-  font-size: 22px;
-}
+.page-header h2 { flex: 1; font-size: 22px; }
 
 .btn-back {
   width: 44px;
@@ -290,9 +222,7 @@ html, body {
   transition: transform 0.15s;
 }
 
-.btn-back:active {
-  transform: scale(0.9);
-}
+.btn-back:active { transform: scale(0.9); }
 
 /* ============ 任务列表 ============ */
 .task-list {
@@ -310,11 +240,6 @@ html, body {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.15s;
-}
-
-.task-item:active {
-  transform: scale(0.97);
 }
 
 .task-icon {
@@ -328,20 +253,9 @@ html, body {
   border-radius: 14px;
 }
 
-.task-info {
-  flex: 1;
-}
-
-.task-name {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.task-reward {
-  font-size: 14px;
-  color: #B8860B;
-  margin-top: 2px;
-}
+.task-info { flex: 1; }
+.task-name { font-size: 18px; font-weight: 700; }
+.task-reward { font-size: 14px; color: #B8860B; margin-top: 2px; }
 
 .task-done-btn {
   width: 56px;
@@ -358,20 +272,10 @@ html, body {
   justify-content: center;
 }
 
-.task-done-btn:active {
-  transform: scale(0.85);
-}
+.task-done-btn:active { transform: scale(0.85); }
 
-/* 今日完成 */
-.today-history {
-  padding: 10px 0 30px;
-}
-
-.today-history h3 {
-  font-size: 16px;
-  color: #999;
-  margin-bottom: 8px;
-}
+.today-history { padding: 10px 0 30px; }
+.today-history h3 { font-size: 16px; color: #999; margin-bottom: 8px; }
 
 .today-item {
   display: flex;
@@ -382,16 +286,64 @@ html, body {
   color: #888;
 }
 
-.today-item .check {
-  color: #00b894;
-  font-size: 18px;
+.today-item .check { color: #00b894; font-size: 18px; }
+.today-empty { color: #ccc; font-size: 14px; padding: 12px; text-align: center; }
+
+/* ============ 小屋 ============ */
+.house-room {
+  flex: 1;
+  min-height: 280px;
+  background: linear-gradient(180deg, #E8F6FF 0%, #FFF8E7 60%, #F5E6D3 100%);
+  border-radius: 24px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+  border: 3px solid #f0e0d0;
+  overflow: hidden;
+  transition: background 0.5s;
 }
 
-.today-empty {
+.house-character {
+  margin-bottom: 12px;
+  animation: characterIdle 2s ease-in-out infinite;
+}
+
+.house-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.house-item-placed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 40px;
+  animation: itemPopIn 0.3s ease;
+}
+
+.house-item-label {
+  font-size: 10px;
+  color: #999;
+  font-weight: 600;
+}
+
+.house-empty {
   color: #ccc;
-  font-size: 14px;
-  padding: 12px;
+  font-size: 15px;
+  padding: 30px;
   text-align: center;
+}
+
+@keyframes itemPopIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 /* ============ 商店 ============ */
@@ -404,10 +356,10 @@ html, body {
 }
 
 .shop-tab {
-  padding: 8px 18px;
+  padding: 8px 16px;
   border: none;
   border-radius: 30px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   background: #f0f0f0;
   color: #888;
@@ -443,13 +395,8 @@ html, body {
   position: relative;
 }
 
-.shop-item:active {
-  transform: scale(0.93);
-}
-
-.shop-item.owned {
-  opacity: 0.5;
-}
+.shop-item:active { transform: scale(0.93); }
+.shop-item.owned { opacity: 0.5; }
 
 .shop-item.owned::after {
   content: '\2713';
@@ -469,113 +416,232 @@ html, body {
   justify-content: center;
 }
 
-.shop-item-name {
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.2;
-}
+.shop-item-name { font-size: 13px; font-weight: 600; text-align: center; }
+.shop-item-price { font-size: 12px; color: #B8860B; font-weight: 700; }
 
-.shop-item-price {
-  font-size: 12px;
-  color: #B8860B;
-  font-weight: 700;
-}
-
-/* ============ 换装页 ============ */
-.dress-stage {
-  min-height: 200px;
-  flex: none;
-}
-
-.dress-tabs {
-  display: flex;
-  gap: 8px;
-  padding: 8px 0;
-  overflow-x: auto;
-}
-
-.dress-tab {
-  padding: 8px 18px;
-  border: none;
-  border-radius: 30px;
-  font-size: 15px;
-  font-weight: 700;
-  background: #f0f0f0;
-  color: #888;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-
-.dress-tab.active {
-  background: linear-gradient(135deg, #55efc4, #00b894);
-  color: #fff;
-}
-
-.dress-items {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 8px 0 30px;
-}
-
-.dress-item {
+/* ============ 打怪兽 ============ */
+#battle-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.battle-monster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px;
+  background: linear-gradient(135deg, #2d1b4e, #4a2070);
+  border-radius: 24px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.monster-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.monster-icon {
+  font-size: 64px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  transition: transform 0.15s;
+}
+
+.hp-bar-wrap {
+  width: 80%;
+  height: 14px;
+  background: #1a0e2e;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.hp-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4757, #ff6b6b);
+  border-radius: 7px;
+  transition: width 0.4s ease;
+}
+
+.hp-text {
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 600;
+}
+
+.battle-vs {
+  font-size: 28px;
+  font-weight: 900;
+  color: #FF6B6B;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.battle-hero {
+  animation: characterIdle 2s ease-in-out infinite;
+}
+
+/* 攻击按钮 */
+.battle-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.atk-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   padding: 12px 6px;
-  background: #fff;
+  border: none;
   border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
   cursor: pointer;
   transition: transform 0.15s;
-  border: 3px solid transparent;
+  color: #fff;
 }
 
-.dress-item:active {
-  transform: scale(0.9);
+.atk-btn:active { transform: scale(0.9); }
+
+.atk-normal {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
 }
 
-.dress-item.equipped {
-  border-color: #00b894;
-  background: #E8FFF5;
+.atk-strong {
+  background: linear-gradient(135deg, #fdcb6e, #f39c12);
 }
 
-.dress-item-icon {
-  font-size: 30px;
+.atk-ultimate {
+  background: linear-gradient(135deg, #e84393, #d63031);
 }
 
-.dress-item-name {
-  font-size: 11px;
-  font-weight: 600;
+.atk-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.atk-icon { font-size: 24px; }
+.atk-label { font-size: 13px; font-weight: 700; }
+.atk-cost { font-size: 10px; opacity: 0.9; }
+.atk-dmg { font-size: 10px; opacity: 0.8; }
+
+/* 战斗动画 */
+.hero-attack {
+  animation: heroAttack 0.3s ease !important;
+}
+
+@keyframes heroAttack {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px) scale(1.1); }
+  100% { transform: translateY(0); }
+}
+
+.monster-hit {
+  animation: monsterHit 0.4s ease;
+}
+
+@keyframes monsterHit {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+.monster-hit-big {
+  animation: monsterHitBig 0.4s ease;
+}
+
+@keyframes monsterHitBig {
+  0% { transform: scale(1); filter: brightness(1); }
+  30% { transform: scale(1.2); filter: brightness(2); }
+  60% { transform: scale(0.8); filter: brightness(0.5); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* 伤害数字 */
+.damage-number {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 36px;
+  font-weight: 900;
+  color: #ff4757;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  pointer-events: none;
+  animation: damageFloat 0.8s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes damageFloat {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-50px) scale(1.5); }
+}
+
+/* 战斗日志 */
+.battle-log {
+  width: 100%;
+  min-height: 30px;
   text-align: center;
 }
 
-.dress-empty {
+.battle-log-msg {
+  font-size: 14px;
+  font-weight: 700;
+  animation: logFade 2s ease forwards;
+}
+
+@keyframes logFade {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 战利品墙 */
+.trophy-section {
+  padding: 8px 0 30px;
+}
+
+.trophy-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #B8860B;
+  margin-bottom: 10px;
+}
+
+.trophy-wall {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.trophy-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 6px;
+  background: linear-gradient(135deg, #FFF8E0, #FFE8A0);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+  border: 2px solid #FFD700;
+}
+
+.trophy-icon { font-size: 32px; }
+.trophy-name { font-size: 11px; font-weight: 700; color: #B8860B; }
+.trophy-date { font-size: 9px; color: #ccc; }
+
+.trophy-empty {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
   color: #ccc;
-  font-size: 16px;
-}
-
-/* 卸下按钮 */
-.dress-unequip {
-  display: flex;
-  justify-content: center;
-  padding: 8px 0;
-}
-
-.btn-unequip {
-  background: #f0f0f0;
-  color: #999;
-  font-size: 13px;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  font-size: 14px;
 }
 
 /* ============ 弹窗 ============ */
@@ -592,10 +658,7 @@ html, body {
   transition: opacity 0.25s;
 }
 
-.modal.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+.modal.show { opacity: 1; pointer-events: auto; }
 
 .modal-content {
   background: #fff;
@@ -606,7 +669,7 @@ html, body {
   text-align: center;
 }
 
-/* 密码输入 */
+/* 密码 */
 .pin-display {
   display: flex;
   gap: 16px;
@@ -622,10 +685,7 @@ html, body {
   transition: background 0.15s, transform 0.15s;
 }
 
-.pin-dot.filled {
-  background: #FF6B6B;
-  transform: scale(1.2);
-}
+.pin-dot.filled { background: #FF6B6B; transform: scale(1.2); }
 
 .pin-pad {
   display: grid;
@@ -647,23 +707,11 @@ html, body {
   transition: transform 0.1s, background 0.1s;
 }
 
-.pin-btn:active {
-  transform: scale(0.9);
-  background: #e0e0e0;
-}
+.pin-btn:active { transform: scale(0.9); background: #e0e0e0; }
+.pin-btn-empty { visibility: hidden; }
+.pin-btn-del { font-size: 20px; color: #999; }
 
-.pin-btn-empty {
-  visibility: hidden;
-}
-
-.pin-btn-del {
-  font-size: 20px;
-  color: #999;
-}
-
-.pin-error {
-  animation: shake 0.4s ease;
-}
+.pin-error { animation: shake 0.4s ease; }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -672,36 +720,14 @@ html, body {
 }
 
 /* 购买弹窗 */
-.modal-buy {
-  padding: 24px;
-}
+.modal-buy { padding: 24px; }
+.buy-preview { font-size: 60px; margin-bottom: 8px; }
+.buy-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.buy-price { font-size: 18px; color: #B8860B; font-weight: 700; margin-bottom: 20px; }
+.buy-actions { display: flex; gap: 12px; }
+.buy-actions .btn { flex: 1; }
 
-.buy-preview {
-  font-size: 60px;
-  margin-bottom: 8px;
-}
-
-.buy-name {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.buy-price {
-  font-size: 18px;
-  color: #B8860B;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.buy-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.buy-actions .btn {
-  flex: 1;
-}
+#pin-title { font-size: 18px; color: #333; }
 
 /* ============ 庆祝动画 ============ */
 .celebration {
@@ -720,14 +746,8 @@ html, body {
 }
 
 @keyframes confettiFall {
-  0% {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100vh) rotate(720deg) scale(0.3);
-  }
+  0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateY(100vh) rotate(720deg) scale(0.3); }
 }
 
 .float-points {
@@ -742,18 +762,6 @@ html, body {
 }
 
 @keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-80px) scale(1.5);
-  }
-}
-
-/* ============ 首次设置密码提示 ============ */
-#pin-title {
-  font-size: 18px;
-  color: #333;
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
 }
