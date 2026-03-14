@@ -634,10 +634,12 @@ const app = {
   // ---- GIF动画 ----
   showGif(gifUrl, text, duration) {
     const modal = document.getElementById('gif-modal');
-    const container = document.getElementById('gif-image-container');
+    const img = document.getElementById('gif-image');
     const txt = document.getElementById('gif-text');
-    // 用新建img元素的方式强制重新播放GIF（兼容微信浏览器）
-    container.innerHTML = `<img src="${gifUrl}" alt="动画" style="max-width:100%;max-height:50vh;border-radius:12px;">`;
+    // 先清空再设置src，强制重新加载GIF（不用时间戳参数，兼容微信）
+    img.removeAttribute('src');
+    void img.offsetHeight;
+    img.src = gifUrl;
     txt.textContent = text || '';
     modal.classList.add('show');
     if (duration) {
@@ -648,7 +650,7 @@ const app = {
   closeGif() {
     const modal = document.getElementById('gif-modal');
     modal.classList.remove('show');
-    document.getElementById('gif-image-container').innerHTML = '';
+    document.getElementById('gif-image').removeAttribute('src');
   },
 
   // 在战斗区域内播放GIF覆盖动画
@@ -656,7 +658,7 @@ const app = {
     const battleArea = document.getElementById('battle-monster');
     const overlay = document.createElement('div');
     overlay.className = 'battle-gif-overlay';
-    overlay.innerHTML = `<img src="${gifUrl}" alt="攻击动画">`;
+    overlay.innerHTML = `<img src="${gifUrl}" alt="攻击动画" style="max-width:100%;max-height:100%;">`;
     battleArea.appendChild(overlay);
     setTimeout(() => overlay.remove(), duration || 2000);
   },
