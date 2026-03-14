@@ -82,16 +82,15 @@ const SHOP_ITEMS = {
   pet: {
     label: '宠物', icon: '🐾', zone: 'pet',
     items: [
-      { id: 'p_dog', name: '小狗', icon: '🐕', price: 60 },
-      { id: 'p_cat', name: '小猫', icon: '🐈', price: 60 },
-      { id: 'p_rabbit', name: '兔子', icon: '🐰', price: 50 },
-      { id: 'p_hamster', name: '仓鼠', icon: '🐹', price: 45 },
-      { id: 'p_bird', name: '小鸟', icon: '🐦', price: 50 },
-      { id: 'p_fish', name: '金鱼', icon: '🐟', price: 40 },
-      { id: 'p_turtle', name: '小乌龟', icon: '🐢', price: 45 },
-      { id: 'p_panda', name: '熊猫', icon: '🐼', price: 70 },
-      { id: 'p_dragon', name: '小恐龙', icon: '🦖', price: 80, gif: 'Tyrannosaurus_rex.gif' },
-      { id: 'p_unicorn', name: '独角兽', icon: '🦄', price: 80 }
+      { id: 'p_dog', name: '小狗', icon: '🐕', price: 60, gif: 'gifs/dog.gif' },
+      { id: 'p_cat', name: '小猫', icon: '🐈', price: 60, gif: 'gifs/cat.gif' },
+      { id: 'p_rabbit', name: '兔子', icon: '🐰', price: 50, gif: 'gifs/rabbit.gif' },
+      { id: 'p_hamster', name: '仓鼠', icon: '🐹', price: 45, gif: 'gifs/hamster.gif' },
+      { id: 'p_bird', name: '小鸟', icon: '🐦', price: 50, gif: 'gifs/bird.gif' },
+      { id: 'p_fish', name: '金鱼', icon: '🐟', price: 40, gif: 'gifs/gold_fish.gif' },
+      { id: 'p_panda', name: '熊猫', icon: '🐼', price: 70, gif: 'gifs/panada.gif' },
+      { id: 'p_dragon', name: '小恐龙', icon: '🦖', price: 80, gif: 'gifs/Tyrannosaurus_rex.gif' },
+      { id: 'p_unicorn', name: '独角兽', icon: '🦄', price: 80, gif: 'gifs/unicorn.gif' }
     ]
   }
 };
@@ -391,7 +390,7 @@ const app = {
     let notice = '';
     if (this.shopCategory === 'pet') {
       const petCount = (house.pets || []).length;
-      notice = `<div class="shop-notice">${char.name}已有 ${petCount}/2 只宠物${petCount >= 2 ? '（已满）' : ''}</div>`;
+      notice = `<div class="shop-notice">${char.name}已有 ${petCount} 只宠物</div>`;
     }
     if (this.shopCategory === 'floor') {
       notice = `<div class="shop-notice">购买后立即应用到${char.name}的小屋</div>`;
@@ -433,12 +432,7 @@ const app = {
     const item = this.findItem(itemId);
     if (!item) return;
 
-    // 宠物数量限制
     const cat = this.findItemCategory(itemId);
-    if (cat === 'pet' && (house.pets || []).length >= 2) {
-      this.showToast('每个角色最多养2只宠物哦~');
-      return;
-    }
 
     this.pendingBuyItem = item;
     document.getElementById('buy-preview').textContent = item.icon;
