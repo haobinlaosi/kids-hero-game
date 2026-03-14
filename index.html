@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icons/icon.svg">
   <link rel="manifest" href="manifest.json">
   <title>宝贝任务乐园</title>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -152,7 +152,15 @@
     </div>
   </div>
 
+  <!-- GIF动画弹窗 -->
+  <div id="gif-modal" class="modal">
+    <div class="modal-content modal-gif" onclick="app.closeGif()">
+      <img id="gif-image" src="" alt="动画">
+      <p id="gif-text" class="gif-text"></p>
+    </div>
+  </div>
+
   <div id="celebration" class="celebration"></div>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

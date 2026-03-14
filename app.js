@@ -90,7 +90,7 @@ const SHOP_ITEMS = {
       { id: 'p_fish', name: '金鱼', icon: '🐟', price: 40 },
       { id: 'p_turtle', name: '小乌龟', icon: '🐢', price: 45 },
       { id: 'p_panda', name: '熊猫', icon: '🐼', price: 70 },
-      { id: 'p_dragon', name: '小恐龙', icon: '🦖', price: 80 },
+      { id: 'p_dragon', name: '小恐龙', icon: '🦖', price: 80, gif: 'Tyrannosaurus_rex.gif' },
       { id: 'p_unicorn', name: '独角兽', icon: '🦄', price: 80 }
     ]
   }
@@ -346,10 +346,12 @@ const app = {
     document.getElementById('room-character').innerHTML =
       `<img src="${char.img}" alt="${char.name}" style="width:90px;height:110px;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2))">`;
 
-    // 宠物（角色两侧）
+    // 宠物（角色两侧，有GIF的可点击）
     const pets = (house.pets || []).map(id => this.findItem(id)).filter(Boolean);
-    document.getElementById('room-pet-left').innerHTML = pets[0] ? `<span class="room-pet">${pets[0].icon}</span>` : '';
-    document.getElementById('room-pet-right').innerHTML = pets[1] ? `<span class="room-pet">${pets[1].icon}</span>` : '';
+    document.getElementById('room-pet-left').innerHTML = pets[0]
+      ? `<span class="room-pet ${pets[0].gif ? 'clickable' : ''}" ${pets[0].gif ? `onclick="app.showGif('${pets[0].gif}', '${pets[0].name}', 3000)"` : ''}>${pets[0].icon}</span>` : '';
+    document.getElementById('room-pet-right').innerHTML = pets[1]
+      ? `<span class="room-pet ${pets[1].gif ? 'clickable' : ''}" ${pets[1].gif ? `onclick="app.showGif('${pets[1].gif}', '${pets[1].name}', 3000)"` : ''}>${pets[1].icon}</span>` : '';
 
     // 地板家具
     const furnitureItems = house.items.filter(id => {
@@ -470,6 +472,11 @@ const app = {
     }
 
     this.saveData(); this.updateAllPoints(); this.closeBuy(); this.celebrate(); this.renderShop();
+
+    // 如果购买的是有GIF的宠物，播放GIF动画
+    if (cat === 'pet' && item.gif) {
+      this.showGif(item.gif, `🎉 ${item.name}来啦！`, 3000);
+    }
   },
 
   showToast(msg) {
@@ -574,6 +581,10 @@ const app = {
     const pet = this.findItem(petId);
     if (!pet) return;
     this.data.battle.lastPetAttackDates[petId] = this.getToday();
+    // 如果宠物有GIF，先播放GIF再攻击
+    if (pet.gif) {
+      this.showBattleGif(pet.gif, 2000);
+    }
     this.doAttackAnim(2, false, 0);
     this.showBattleLog(`${pet.icon} ${pet.name} 发动攻击！造成 2 点伤害！`, '#00b894');
   },
@@ -624,6 +635,36 @@ const app = {
   closeVictory() {
     document.getElementById('victory-modal').classList.remove('show');
     this.spawnMonster(); this.renderBattle();
+  },
+
+  // ---- GIF动画 ----
+  showGif(gifUrl, text, duration) {
+    const modal = document.getElementById('gif-modal');
+    const img = document.getElementById('gif-image');
+    const txt = document.getElementById('gif-text');
+    // 加时间戳强制重新播放GIF
+    img.src = gifUrl + '?t=' + Date.now();
+    txt.textContent = text || '';
+    modal.classList.add('show');
+    if (duration) {
+      setTimeout(() => this.closeGif(), duration);
+    }
+  },
+
+  closeGif() {
+    const modal = document.getElementById('gif-modal');
+    modal.classList.remove('show');
+    document.getElementById('gif-image').src = '';
+  },
+
+  // 在战斗区域内播放GIF覆盖动画
+  showBattleGif(gifUrl, duration) {
+    const battleArea = document.getElementById('battle-monster');
+    const overlay = document.createElement('div');
+    overlay.className = 'battle-gif-overlay';
+    overlay.innerHTML = `<img src="${gifUrl}?t=${Date.now()}" alt="攻击动画">`;
+    battleArea.appendChild(overlay);
+    setTimeout(() => overlay.remove(), duration || 2000);
   },
 
   // ---- 庆祝 ----
